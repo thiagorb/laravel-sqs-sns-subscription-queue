@@ -70,6 +70,7 @@ class SqsSnsJob extends SqsJob
             $job['Body'] = json_encode([
                 'displayName' => $commandName,
                 'job' => CallQueuedHandler::class . '@call',
+                'maxTries' => $command->tries ?? null,
                 'data' => compact('commandName', 'command'),
             ]);
         }
